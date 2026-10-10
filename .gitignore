@@ -1,0 +1,12 @@
+runtime/
+__pycache__/
+.venv/
+.DS_Store
+*.log
+samples/source/
+samples/*-part.mp4
+samples/bunny-source.zip
+samples/flowers.mp4
+samples/inspect-*.jpg
+samples/concat.txt
+qa/

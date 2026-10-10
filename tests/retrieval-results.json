@@ -1,0 +1,26 @@
+[
+  {
+    "query": "pink flowers in a garden",
+    "start": 0,
+    "end": 8,
+    "topTimestamp": 4,
+    "similarity": 0.6881163505270342,
+    "passed": true
+  },
+  {
+    "query": "a grassy meadow with a tall evergreen tree",
+    "start": 8,
+    "end": 16,
+    "topTimestamp": 8,
+    "similarity": 0.7194369166557705,
+    "passed": true
+  },
+  {
+    "query": "a large white animated rabbit",
+    "start": 16,
+    "end": 24,
+    "topTimestamp": 18,
+    "similarity": 0.7832743736679008,
+    "passed": true
+  }
+]

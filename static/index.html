@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Framefind — Local video search</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><strong>Framefind</strong><span>Local video search</span></header>
+<main>
+<section class="intro"><h1>Find a moment.</h1><p>Describe a scene. Jump to the frame.</p></section>
+<section class="workspace">
+  <div class="viewer">
+    <video id="player" controls preload="metadata" src="/sample-preview.mp4" aria-label="Searchable video"></video>
+    <p id="video-name">Sample reel · 24 seconds</p>
+    <div class="video-actions"><select id="sample" aria-label="Sample video"><option>Sample reel</option></select><button id="load">Load sample</button><label class="button secondary" for="upload">Upload video</label><input id="upload" type="file" accept="video/*" hidden></div>
+    <p id="status" role="status" aria-live="polite">Load the sample to index it, or upload a video up to 2 minutes / 50 MB.</p>
+    <p class="credits">Sample footage: MDN CC0 flowers and <a href="https://peach.blender.org/">Big Buck Bunny</a>, © 2008 Blender Foundation, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Trimmed, resized, concatenated; audio removed.</p>
+  </div>
+  <div class="search-panel">
+    <h2>Search the video</h2>
+    <form id="search-form"><input id="query" aria-label="Scene description" placeholder="pink flowers in a garden" maxlength="500" required><button id="search" disabled>Search</button></form>
+    <p class="example-label">Try an example</p><div class="examples"><button data-query="pink flowers in a garden">Pink flowers</button><button data-query="a large white animated rabbit">Animated rabbit</button><button data-query="a grassy meadow with a tall evergreen tree">Forest landscape</button></div>
+    <div class="result-area"><h2>Matching moments</h2><div id="results"><p class="placeholder">Load a video, then describe a scene.</p></div></div>
+    <p class="note">Results are candidate frames. Brief events may fall between samples.</p>
+  </div>
+</section>
+</main><script src="/app.js" defer></script>
+</body></html>
