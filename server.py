@@ -16,6 +16,13 @@ JOBS = {}
 JOBS_LOCK = threading.Lock()
 WORKER = ThreadPoolExecutor(max_workers=1)
 
+def review_samples():
+    return [item for item in json.loads((ROOT/'samples/review-catalog.json').read_text()) if (ROOT/item['file']).is_file()]
+
+def selected_sample(parsed, default='original'):
+    identity = parse_qs(parsed.query).get('id',[default])[0]
+    return next((item for item in review_samples() if item['id']==identity),None)
+
 def update_job(identity, **values):
     with JOBS_LOCK:
         JOBS[identity].update(values)
@@ -51,6 +58,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         parsed = urlparse(self.path)
+        if parsed.path=='/api/samples':
+            return self.json({'samples':[{key:value for key,value in item.items() if key!='file'} for item in review_samples()]})
         if parsed.path=='/api/status':
             try:
                 models = request('/api/tags').get('models',[])
@@ -69,8 +78,10 @@ class Handler(BaseHTTPRequestHandler):
             if not re.fullmatch(r'[a-f0-9]{24}/(?:video\.mp4|frames/frame-\d{3}\.jpg)',relative):
                 return self.json({'error':'Not found'},404)
         elif parsed.path=='/sample-preview.mp4':
-            root = ROOT/'samples'
-            relative = 'sample-reel.mp4'
+            sample = selected_sample(parsed)
+            if sample is None:
+                return self.json({'error':'Unknown sample'},404)
+            return self.file(ROOT/sample['file'])
         else:
             root = ROOT/'static'
             relative = unquote(parsed.path).lstrip('/') or 'index.html'
@@ -114,11 +125,15 @@ class Handler(BaseHTTPRequestHandler):
             pass
 
     def do_POST(self):
-        path = urlparse(self.path).path
+        parsed = urlparse(self.path)
+        path = parsed.path
         source = None
         try:
             if path=='/api/sample':
-                return self.json({'jobId':start_job(ROOT/'samples/sample-reel.mp4','Sample reel')},202)
+                sample = selected_sample(parsed)
+                if sample is None:
+                    return self.json({'error':'Unknown sample'},404)
+                return self.json({'jobId':start_job(ROOT/sample['file'],sample['name'])},202)
             length = int(self.headers.get('Content-Length','0'))
             if path=='/api/upload':
                 if not 0<length<=MAX_UPLOAD:
@@ -152,5 +167,5 @@ class Handler(BaseHTTPRequestHandler):
 if __name__=='__main__':
     port=int(os.environ.get('PORT','8001'))
     RUNTIME.mkdir(exist_ok=True)
-    print(f'Framefind: http://localhost:{port}',flush=True)
+    print(f'Auto-Surveillance: http://localhost:{port}',flush=True)
     ThreadingHTTPServer(('127.0.0.1',port),Handler).serve_forever()

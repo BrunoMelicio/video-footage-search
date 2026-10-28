@@ -1,24 +1,15 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Framefind — Local video search</title><link rel="stylesheet" href="/style.css"></head>
-<body>
-<header><strong>Framefind</strong><span>Local video search</span></header>
-<main>
-<section class="intro"><h1>Find a moment.</h1><p>Describe a scene. Jump to the frame.</p></section>
-<section class="workspace">
-  <div class="viewer">
-    <video id="player" controls preload="metadata" src="/sample-preview.mp4" aria-label="Searchable video"></video>
-    <p id="video-name">Sample reel · 24 seconds</p>
-    <div class="video-actions"><select id="sample" aria-label="Sample video"><option>Sample reel</option></select><button id="load">Load sample</button><label class="button secondary" for="upload">Upload video</label><input id="upload" type="file" accept="video/*" hidden></div>
-    <p id="status" role="status" aria-live="polite">Load the sample to index it, or upload a video up to 2 minutes / 50 MB.</p>
-    <p class="credits">Sample footage: MDN CC0 flowers and <a href="https://peach.blender.org/">Big Buck Bunny</a>, © 2008 Blender Foundation, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Trimmed, resized, concatenated; audio removed.</p>
-  </div>
-  <div class="search-panel">
-    <h2>Search the video</h2>
-    <form id="search-form"><input id="query" aria-label="Scene description" placeholder="pink flowers in a garden" maxlength="500" required><button id="search" disabled>Search</button></form>
-    <p class="example-label">Try an example</p><div class="examples"><button data-query="pink flowers in a garden">Pink flowers</button><button data-query="a large white animated rabbit">Animated rabbit</button><button data-query="a grassy meadow with a tall evergreen tree">Forest landscape</button></div>
-    <div class="result-area"><h2>Matching moments</h2><div id="results"><p class="placeholder">Load a video, then describe a scene.</p></div></div>
-    <p class="note">Results are candidate frames. Brief events may fall between samples.</p>
-  </div>
-</section>
-</main><script src="/app.js" defer></script>
-</body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Auto-Surveillance — Next gen surveillance</title><link rel="stylesheet" href="/style.css"></head><body>
+<header><div class="brand"><span class="brand-mark" aria-hidden="true">A</span><strong>Auto-Surveillance</strong><span class="product-label">NEXT GEN SURVEILLANCE</span></div><span class="local-label">Local workspace <span id="model-state">· Checking model</span></span></header>
+<main><div class="page-title"><div><p class="eyebrow">RECORDED FOOTAGE</p><h1>Review workspace</h1></div><label class="button secondary" for="upload">Import recording</label><input id="upload" type="file" accept="video/*" hidden></div>
+<div class="review-layout">
+<aside class="library" aria-label="Recording library"><div class="section-heading"><h2>Recordings</h2><span>Examples</span></div><div id="recordings"></div><p class="library-note">Public research footage.<br>One recording searched at a time.</p></aside>
+<section class="viewer" aria-label="Footage player"><div class="viewer-heading"><div><p class="eyebrow" id="source-label">SELECT A RECORDING</p><h2 id="video-name">No recording selected</h2></div><span id="duration-label" class="mono">--:--</span></div>
+<video id="player" controls preload="metadata" aria-label="Searchable video"></video>
+<div class="timeline-heading"><span>Recording timeline</span><span class="mono" id="playhead">00:00 / 00:00</span></div><div id="timeline" aria-label="Search matches on recording timeline"></div><div class="timeline-scale"><span>00:00</span><span id="timeline-end">00:00</span></div>
+<div class="transport"><button id="back" class="secondary" disabled>−5 seconds</button><button id="forward" class="secondary" disabled>+5 seconds</button><span id="index-state">Not indexed</span></div>
+<div class="recording-details"><span id="source-detail">Choose a recording from the library.</span><button id="load">Index recording</button></div><p id="status" role="status" aria-live="polite">Choose an example or import a recording up to 2 minutes / 50 MB.</p><p class="credits" id="credits"></p></section>
+<section class="search-panel" aria-label="Search and review results"><p class="eyebrow">VISUAL SEARCH</p><h2>Find a moment</h2><p class="search-hint">Describe visible objects, clothing or a scene.</p>
+<form id="search-form"><label class="sr-only" for="query">Scene description</label><textarea id="query" placeholder="A person carrying a bag near the entrance" maxlength="500" rows="3" required></textarea><button id="search" disabled>Search recording <span aria-hidden="true">↗</span></button></form>
+<p class="example-label">Try a search</p><div id="examples" class="examples"></div><div class="result-area"><div class="section-heading"><h2>Candidate moments</h2><span id="result-count">0 results</span></div><p id="result-context" class="search-hint">Results will appear here after indexing and searching.</p><div id="results"></div></div><p class="note">Matches rank visual similarity, including when an object is absent. Verify each candidate in playback. Actions need context across frames.</p></section>
+</div></main><script src="/app.js" defer></script></body></html>

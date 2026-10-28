@@ -1,0 +1,6 @@
+[
+  {"id":"lobby","name":"Building · Entrance lobby","file":"runtime/demo/lobby.mp4","duration":30,"source":"CAVIAR · Grenoble lobby","sourceUrl":"https://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/","license":"CC BY-SA (as stated by CAVIAR)","queries":["a person wearing a blue jacket","a bag on the floor","a dog in the lobby"]},
+  {"id":"parking","name":"Parking · Campus car park","file":"runtime/demo/parking.mp4","duration":29.933333,"source":"MEVA · School G424","sourceUrl":"https://mevadata.org/","license":"CC BY 4.0","queries":["a person wearing red near a white pickup truck","an orange vehicle in a parking lot","a dog in the parking lot"]},
+  {"id":"retail","name":"Retail · Shop entrance","file":"runtime/demo/retail.mp4","duration":15.32,"source":"CAVIAR · Lisbon shopping centre","sourceUrl":"https://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/","license":"CC BY-SA (as stated by CAVIAR)","queries":["a person in a light beige sweater","a person in a dark shirt near the shop entrance","a dog inside the shopping centre"]},
+  {"id":"original","name":"Original · Scene retrieval test","file":"samples/sample-reel.mp4","duration":24,"source":"MDN / Blender Foundation","sourceUrl":"https://peach.blender.org/","license":"CC0 / CC BY 3.0","queries":["pink flowers in a garden","a large white animated rabbit","a grassy meadow with a tall evergreen tree"]}
+]

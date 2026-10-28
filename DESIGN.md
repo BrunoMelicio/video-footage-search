@@ -1,4 +1,12 @@
-# Framefind visual specification
+# Auto-Surveillance visual specification
+
+Current product name: **Auto-Surveillance**. Tagline: **Next gen surveillance**. Historical Framefind references below describe the original demo.
+
+## Review workspace revision — 2026-10-28
+
+The current interface supersedes the initial concept below. It uses a compact navy header, a gray workspace background, a recording library, a central player with candidate timeline markers, and a right-side visual search/results panel. Teal marks actions and candidates. Typography is Helvetica Neue with monospace timestamps. At narrower widths, search moves below the player; on mobile the library uses a two-column grid. No synthetic camera metadata, detection boxes or fabricated conversations are displayed. See REVIEW-DIRECTION.md for scope and research findings.
+
+Browser checks covered selecting/indexing all three examples, lobby/parking/retail queries, candidate playback, desktop at 1440px, mobile at 390px, and no horizontal overflow on mobile. Screenshots were captured to /private/tmp/framefind-review-desktop.png and /private/tmp/framefind-review-mobile.png. The following specification is retained as historical context for the original demo.
 
 Concept generated before implementation on 2026-10-10; source screenshot `exec-5fd71e68-d51a-4a7c-920b-1364ce9b8ea4.png` in the conversation's generated images.
 
