@@ -222,34 +222,6 @@ The lobby's correct blue-jacket query scored **0.687**, lower than the absent-do
 
 <a id="roadmap"></a>
 
-## 🗺️ Where this is going
-
-- [x] Local image/text retrieval with source timestamps.
-- [x] Review workspace with a recording library, timeline markers and playback controls.
-- [x] Building, parking and retail camera examples.
-- [x] Exploratory queries that expose absent-object failures.
-- [ ] Evaluate retrieval with independently labelled intervals, absent objects and varied camera conditions.
-- [ ] Retrieve short clips and verify candidate observations across adjacent frames.
-- [ ] Support long recordings, persistent camera metadata and time-range filters.
-- [ ] Add grounded follow-ups such as “show ten seconds earlier” and “only this camera.”
-- [ ] Add bookmarks, reviewer notes and context-clip exports.
-- [ ] Add access control, retention policies and audit records for deployment.
-
-See [the product direction and experiment notes](REVIEW-DIRECTION.md) for the proposed increments.
-
-## 📚 Project guide
-
-| File / directory | Purpose |
-|---|---|
-| [`server.py`](server.py) | Local HTTP API, uploads, jobs and media serving. |
-| [`engine.py`](engine.py) | Video indexing, embeddings and retrieval. |
-| [`static/`](static/) | Review interface. |
-| [`scripts/`](scripts/) | Sample preparation and exploratory evaluation. |
-| [`tests/`](tests/) | Unit checks and original retrieval queries. |
-| [`REVIEW-DIRECTION.md`](REVIEW-DIRECTION.md) | Findings and next product milestones. |
-| [`DESIGN.md`](DESIGN.md) | Current interface direction and original design history. |
-| [`ATTRIBUTION.md`](ATTRIBUTION.md) | Sample footage and screenshot credits. |
-
 ## 📜 Media and third-party attribution
 
 Camera examples are downloaded locally and excluded from Git. README screenshots contain derived CAVIAR frames, credited to the **EC Funded CAVIAR project / IST 2001 37540**, under the source page's **CC BY-SA** terms. MEVA footage is credited to **Kitware / IARPA**, **CC BY 4.0**. The included original teaching reel uses MDN CC0 flowers and Blender Foundation's *Big Buck Bunny*, CC BY 3.0.
