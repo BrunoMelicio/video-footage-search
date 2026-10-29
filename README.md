@@ -181,47 +181,6 @@ task: search result | query: YOUR_DESCRIPTION
 
 Cache identity includes video content, model digest, sampling interval and pipeline version. Source changes or model changes produce a new index.
 
-<a id="validation"></a>
-
-## 🧪 Validation and practical limits
-
-### Run the checks
-
-```bash
-# Offline unit checks; no inference required.
-python3 -m unittest discover -s tests -v
-
-# Original three-scene retrieval check; requires Ollama and the model.
-python3 evaluate.py
-
-# Exploratory camera-footage queries, including absent-object controls.
-# Prepare the camera examples first.
-python3 scripts/evaluate_review.py
-```
-
-**Current evidence:** nine unit tests pass. The original flowers/landscape/rabbit retrieval cases pass. Browser checks exercised selecting and indexing all three camera examples, searching, candidate playback, desktop layout and mobile layout without horizontal overflow.
-
-Camera-footage rankings are written to `runtime/review-evaluation.json`. They are diagnostic results, not accuracy scores. Unit tests cover sampling boundaries, vector validation, dimension mismatches, temporal result spacing, video ID validation and sample selection.
-
-### What the camera tests revealed
-
-An absent-dog query still returned candidate frames in all three recordings:
-
-| Recording | Top similarity for absent-dog query |
-|---|---:|
-| Lobby | 0.718 |
-| Parking | 0.679 |
-| Retail | 0.688 |
-
-The lobby's correct blue-jacket query scored **0.687**, lower than the absent-dog query. Raw cosine cannot be treated as a calibrated probability or an arbitrary universal detection threshold.
-
-- **Single frames do not establish actions.** “Left a bag behind,” “never exited” or “stole an item” require temporal evidence.
-- **Two-second sampling can miss brief events.** Small subjects, occlusion and low-light footage need separate evaluation.
-- **Search always returns nearest candidates.** There is no reliable “no match” decision yet.
-- **The current scope is short recorded clips.** Live camera ingestion, hours-long recordings, cross-camera tracking and conversational follow-ups are planned.
-
-<a id="roadmap"></a>
-
 ## 📜 Media and third-party attribution
 
 Camera examples are downloaded locally and excluded from Git. README screenshots contain derived CAVIAR frames, credited to the **EC Funded CAVIAR project / IST 2001 37540**, under the source page's **CC BY-SA** terms. MEVA footage is credited to **Kitware / IARPA**, **CC BY 4.0**. The included original teaching reel uses MDN CC0 flowers and Blender Foundation's *Big Buck Bunny*, CC BY 3.0.
